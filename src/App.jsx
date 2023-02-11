@@ -4,8 +4,7 @@ import './VideoModule.jsx'
 var moduleList = [];
 
 function addVideo() {
-  for(selectedFile in files) {
-    moduleList.push(selectedFile)
+    
     console.log(selectedFile);
     const objectURL = URL.createObjectURL(selectedFile);
     const videoElement = document.createElement('video');
@@ -14,6 +13,7 @@ function addVideo() {
     videoElement.height="500";
     videoElement.controls = true;
     document.getElementById('head').appendChild(videoElement);
+
   }
   // const selectedFile = document.getElementById('uploader').files[0];
 
@@ -42,10 +42,9 @@ function App() {
         Bass Boosting
         <img alt="bass" src={"../bass.png"} />
         <h1>React File Upload</h1>
+        <input type="file" id="uploader" accept="video/*" />
         <button onClick={addVideo}>Upload</button>
-        {/* <input type="file" id="uploader" accept="video/*" />
-        <button onClick={addVideo}>Upload</button>
-        <button onClick={BASSBoost}>BASS BOOST</button> */}
+        <button onClick={BASSBoost}>BASS BOOST</button>
       </header>
     </div>
   );
