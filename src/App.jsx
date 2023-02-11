@@ -1,4 +1,5 @@
 import './App.css';
+import video from './video.mp4'
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
           <input type="file" />
           <button type="submit">Upload</button>
         </form>
+        <video src={video} width="750" height="500" controls>
+        </video>
       </header>
     </div>
   );
