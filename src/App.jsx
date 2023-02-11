@@ -42,6 +42,7 @@ function App() {
         Bass Boosting
         <img alt="bass" src={"../bass.png"} />
         <h1>React File Upload</h1>
+        <button onClick={addVideo}>Upload</button>
         {/* <input type="file" id="uploader" accept="video/*" />
         <button onClick={addVideo}>Upload</button>
         <button onClick={BASSBoost}>BASS BOOST</button> */}
