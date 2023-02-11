@@ -1,5 +1,16 @@
 import './App.css';
-import video from './movie.mp4';
+
+function addVideo() {
+  const selectedFile = document.getElementById('uploader').files[0];
+  console.log(selectedFile);
+  const objectURL = URL.createObjectURL(selectedFile);
+  const videoElement = document.createElement('video');
+  videoElement.src = objectURL;
+  videoElement.width="750";
+  videoElement.height="500";
+  videoElement.controls = true;
+  document.getElementById('head').appendChild(videoElement);
+}
 
 function BASSBoost() {
   const video = document.querySelector('video');
@@ -8,8 +19,8 @@ function BASSBoost() {
   const biquadFilter = audioContext.createBiquadFilter();
 
   biquadFilter.type = "lowshelf";
-  biquadFilter.frequency.value = 100;
-  biquadFilter.gain.value = 10;
+  biquadFilter.frequency.value = 1000;
+  biquadFilter.gain.value = 40;
 
   source.connect(biquadFilter);
   biquadFilter.connect(audioContext.destination);
@@ -18,16 +29,13 @@ function BASSBoost() {
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header id="head" className="App-header">
         Bass Boosting
         <img alt="bass" src={"../bass.png"} />
-        <video className="video" src={video} width="750" height="500" controls></video>
-        <form>
-          <h1>React File Upload</h1>
-          <input type="file" />
-          <button type="submit">Upload</button>
-        </form>
-        <button onClick={BASSBoost}/>
+        <h1>React File Upload</h1>
+        <input type="file" id="uploader" accept="video/*" />
+        <button onClick={addVideo}>Upload</button>
+        <button onClick={BASSBoost}>BASS BOOST</button>
       </header>
     </div>
   );
