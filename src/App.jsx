@@ -3,18 +3,39 @@ import React from 'react';
 
 class VideoComponent extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.hasBoosted = false;
+  }
+
   componentDidMount() {
-    const video = document.getElementById(this.props.id);
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const source = audioContext.createMediaElementSource(video);
-    const biquadFilter = audioContext.createBiquadFilter();
+    if (!this.hasBoosted) {
+      const video = document.getElementById(this.props.id);
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const source = audioContext.createMediaElementSource(video);
+      const biquadFilter1 = audioContext.createBiquadFilter();
+      const biquadFilter2 = audioContext.createBiquadFilter();
+      const biquadFilter3 = audioContext.createBiquadFilter();
 
-    biquadFilter.type = "lowshelf";
-    biquadFilter.frequency.value = 1000;
-    biquadFilter.gain.value = 40;
+      biquadFilter1.type = "peaking";
+      biquadFilter1.frequency.value = Math.random()*1150+100;
+      biquadFilter1.Q.value = Math.random();
+      biquadFilter1.gain.value = 40;
 
-    source.connect(biquadFilter);
-    biquadFilter.connect(audioContext.destination);
+      biquadFilter2.type = "lowshelf";
+      biquadFilter2.frequency.value = Math.random()*1150+100;
+      biquadFilter2.gain.value = Math.random()*20+20;
+
+      biquadFilter3.type = "highshelf";
+      biquadFilter3.frequency.value = Math.random()*500+800;
+      biquadFilter3.gain.value = Math.random()*40-20;
+
+      source.connect(biquadFilter1);
+      biquadFilter1.connect(biquadFilter2);
+      biquadFilter2.connect(biquadFilter3);
+      biquadFilter3.connect(audioContext.destination);
+      this.hasBoosted = true;
+    }
   }
 
   playVideo = () => {
