@@ -13,7 +13,7 @@ export class Landing extends React.Component {
                     <h3>Everyone can Bass Boost</h3>
                     <h1>Few can 🐟 Boost!</h1>
                 </div>
-                <EnterButton />
+                <EnterButton setLandingFalse={this.props.setLandingFalse} />
             </div>            
         )
     }

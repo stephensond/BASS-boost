@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import {Landing} from './Landing';
 
 class VideoComponent extends React.Component {
 
@@ -57,13 +58,13 @@ class VideoComponent extends React.Component {
   }
 }
 
-
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      videoUrls: []
+      videoUrls: [],
+      isLandingComponent: true
     };
   }
 
@@ -76,21 +77,34 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div className="App">
-      <header id="head" className="App-header">
-        <div>
-          <h1> BASS BOOST </h1>
-          <img src="../bassboost.gif"/>
-        </div>
-        <input type="file" id="uploader" accept="video/*" />
-        <button onClick={this.addVideo}>BOOST</button>
-        {this.state.videoUrls.map((url, index) => (
-          <VideoComponent url={url} key={index} id={'video' + index}/>
-        ))}
-      </header>
-    </div>
-    );
+    if(this.state.isLandingComponent) {
+      return (
+        <Landing setLandingFalse={this.setLandingFalse} />
+      )
+    } else {
+      return (
+        <div className="App">
+        <header id="head" className="App-header">
+          <div>
+            <h1> BASS BOOST </h1>
+            <img src="../bassboost.gif"/>
+          </div>
+          <input type="file" id="uploader" accept="video/*" />
+          <button onClick={this.addVideo}>BOOST</button>
+          {this.state.videoUrls.map((url, index) => (
+            <VideoComponent url={url} key={index} id={'video' + index}/>
+          ))}
+        </header>
+      </div>
+      );
+    }
+  }
+
+  setLandingFalse = () => {
+    console.log('iudbiud');
+    this.setState(() => ({
+      isLandingComponent: false
+    }))
   }
 }
 
