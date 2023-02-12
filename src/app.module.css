@@ -10,7 +10,7 @@
   flex-direction: column;
   align-items: stretch;
   margin-top: 2rem;
-  width: 32rem;
+  width: 20rem;
 }
 
 .header {
@@ -81,7 +81,8 @@
 
 .video {
   border-radius: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  width: 20rem;
 }
 
 .playPauseButton {
@@ -91,6 +92,7 @@
   background-color: white;
   border-width: 0;
   font-weight: bold;
+  margin-bottom: 2rem;
 }
 
 .playPauseButton:hover {
@@ -109,4 +111,14 @@
   background-image: linear-gradient(to right, #43c6ac, #191654);
   background-clip: text;
   font-size: 1.25rem;
+}
+
+@media (min-width: 32rem) {
+  .container {
+    width: 32rem;
+  }
+
+  .video {
+    width: 32rem;
+  }
 }
