@@ -9,7 +9,8 @@ export class EnterButton extends React.Component {
             onClick = {() => this.props.setLandingFalse(false)}
             theme ="The Blue Lagoon"
             background = "linear-gradient(to right, #43c6ac, #191654)"
-            color = "#fff">
+            color = "#fff"
+            className = {this.props.className}>
                 Give me the BASS
             </GradientButton>);
     }

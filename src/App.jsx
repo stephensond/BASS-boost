@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import Landing from "./Landing";
 import styles from "./app.module.css";
+import GradientButton from "react-linear-gradient-button/lib/GradientButton";
 
 class VideoComponent extends React.Component {
 
@@ -203,7 +204,7 @@ function App() {
     <div className={styles.outerContainer}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <div className={styles.title}>BASS BOOST </div>
+          <div className={styles.title}>BASS Boost</div>
           <img
             className={styles.image}
             src="../bassboost.gif"
@@ -221,9 +222,14 @@ function App() {
           onChange={addVideo}
         />
         <div className={styles.buttons}>
-          <button onClick={fileUpload} className={styles.chooseFish}>
+          <GradientButton 
+          onClick={fileUpload} 
+          className={styles.chooseFish}
+          theme ="The Blue Lagoon"
+          background = "linear-gradient(to right, #43c6ac, #191654)"
+          color = "#fff">
             Choose Your Fish
-          </button>
+          </GradientButton>
         </div>
         {videoURLs.map((url, index) => (
           <VideoComponent
