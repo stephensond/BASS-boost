@@ -1,17 +1,15 @@
-import React, {Component} from 'react';
-import GradientButton from 'react-linear-gradient-button';
-import {App} from './App.jsx'
+import React from "react";
+import GradientButton from "react-linear-gradient-button";
 
-
-export class EnterButton extends React.Component {
-    render() {
-        return(<GradientButton 
-            onClick = {() => this.props.setLandingFalse(false)}
-            theme ="The Blue Lagoon"
-            background = "linear-gradient(to right, #43c6ac, #191654)"
-            color = "#fff">
-                Give me the BASS
-            </GradientButton>);
-    }
+export default function EnterButton({ setLandingPage }) {
+  return (
+    <GradientButton
+      onClick={() => setLandingPage(false)}
+      theme="The Blue Lagoon"
+      background="linear-gradient(to right, #43c6ac, #191654)"
+      color="#fff"
+    >
+      Give me the BASS
+    </GradientButton>
+  );
 }
-
