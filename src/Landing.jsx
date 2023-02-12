@@ -1,15 +1,15 @@
 import { EnterButton } from "./EnterButton";
 import { Logo } from "./Logo";
 import React from 'react';
-import './landing.module.css';
+import styles from './landing.module.css';
 
 
 export class Landing extends React.Component {
     render() {
         return (
-            <div className="Landing" id="Landing">
+            <div className={styles.Landing} id="Landing">
                 <Logo/>
-                <div id="IntroText">
+                <div className={styles.IntroText} id="IntroText">
                     <h3>Everyone can Bass Boost</h3>
                     <h1>Few can 🐟 Boost!</h1>
                 </div>
