@@ -1,0 +1,22 @@
+@font-face {
+    font-family: PoiretOne;
+    src: url(https://fonts.google.com/specimen/Poiret+One);
+}
+
+.Landing {
+    margin-top:100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 50px;
+}
+
+.IntroText {
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    background-image: linear-gradient(to right, #43c6ac, #191654);
+    background-clip: text;
+    line-height: 10px;
+    font-family: PoiretOne;  
+}
