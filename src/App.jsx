@@ -1,11 +1,18 @@
-import './App.css';
-import React from 'react';
+import React, { useEffect, useState, useRef } from "react";
+import styles from "./app.module.css";
 
-class VideoComponent extends React.Component {
+function VideoComponent({ url, id }) {
+  const [loaded, setLoaded] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
-  componentDidMount() {
-    const video = document.getElementById(this.props.id);
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  useEffect(() => {
+    if (!loaded) {
+      return;
+    }
+
+    const video = document.getElementById(id);
+    const audioContext = window.AudioContext;
+    console.log(video);
     const source = audioContext.createMediaElementSource(video);
     const biquadFilter = audioContext.createBiquadFilter();
 
@@ -15,63 +22,106 @@ class VideoComponent extends React.Component {
 
     source.connect(biquadFilter);
     biquadFilter.connect(audioContext.destination);
-  }
+    setLoaded(true);
+  }, [id, loaded]);
 
-  playVideo = () => {
-    document.getElementById(this.props.id).play();
-  }
+  const playVideo = () => {
+    document.getElementById(id).play();
+    setPlaying(true);
+  };
 
-  stopVideo = () => {
-    document.getElementById(this.props.id).pause();
-  }
+  const stopVideo = () => {
+    document.getElementById(id).pause();
+    setPlaying(false);
+  };
 
-  render() {
-    return (
-      <div>
-        <video src={this.props.url} id={this.props.id} controls/>
-        <button onClick={this.playVideo}>PLAY</button>
-        <button onClick={this.stopVideo}>STOP</button>
+  const button = playing ? (
+    <button onClick={stopVideo} className={styles.playPauseButton}>
+      <div className={styles.playPauseButtonInside}>
+        <img
+          className={styles.fishImage}
+          src="../dead-fish.jpg"
+          width="150"
+          height="75"
+          alt="bass boost"
+        />
+        <div className={styles.playPauseText}>PAUSE</div>
       </div>
-    );
-  }
-}
+    </button>
+  ) : (
+    <button onClick={playVideo} className={styles.playPauseButton}>
+      <div className={styles.playPauseButtonInside}>
+        <img
+          className={styles.fishImage}
+          src="../live-fish.jpg"
+          width="150"
+          height="75"
+          alt="bass boost"
+        />
+        <div className={styles.playPauseText}>PLAY</div>
+      </div>
+    </button>
+  );
 
-
-class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      videoUrls: []
-    };
-  }
-
-  addVideo = () => {
-    const selectedFile = document.getElementById('uploader').files[0];
-    const objectURL = URL.createObjectURL(selectedFile);
-    this.setState((state, props) => ({
-      videoUrls: [...state.videoUrls, objectURL]
-    }));
-  }
-
-  render() {
-    return (
-      <div className="App">
-      <header id="head" className="App-header">
-        <div>
-          <h1> BASS BOOST </h1>
-          <img src="../bassboost.gif"/>
-        </div>
-        <input type="file" id="uploader" accept="video/*" />
-        <button onClick={this.addVideo}>BOOST</button>
-        {this.state.videoUrls.map((url, index) => (
-          <VideoComponent url={url} key={index} id={'video' + index}/>
-        ))}
-      </header>
+  return (
+    <div className={styles.videoPlayer}>
+      <video
+        className={styles.video}
+        src={url}
+        id={id}
+        controls
+      />
+      {button}
     </div>
-    );
-  }
+  );
 }
 
+// BASS booster
+function App() {
+  const [videoURLs, setVideoURLs] = useState([]);
+
+  const uploadRef = useRef(null);
+
+  const addVideo = () => {
+    const selectedFile = document.getElementById("uploader").files[0];
+    const objectURL = URL.createObjectURL(selectedFile);
+    setVideoURLs([objectURL]);
+  };
+
+  const fileUpload = () => uploadRef.current.click();
+
+  return (
+    <div className={styles.outerContainer}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className={styles.title}>BASS BOOST </div>
+          <img
+            className={styles.image}
+            src="../bassboost.gif"
+            alt="bass boost"
+            width="100"
+            height="100"
+          />
+        </div>
+        <input
+          hidden
+          ref={uploadRef}
+          type="file"
+          id="uploader"
+          accept="video/*"
+          onChange={addVideo}
+        />
+        <div className={styles.buttons}>
+          <button onClick={fileUpload} className={styles.chooseFish}>
+            Choose Your Fish
+          </button>
+        </div>
+        {videoURLs.map((url, index) => (
+          <VideoComponent url={url} key={index} id={"video" + index} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default App;

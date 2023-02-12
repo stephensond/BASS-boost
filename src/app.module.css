@@ -1,0 +1,103 @@
+
+.outerContainer {
+  display: flex;
+  justify-content: center;
+
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 2rem;
+  width: 32rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 2rem;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0rem 2rem 0rem 2rem;
+}
+
+.image {
+  padding: 0rem 2rem 1.5rem 2rem;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.chooseFish {
+  border-radius: 1.25rem;
+  padding: 2rem;
+  font-size: 1rem;
+  background-color: white;
+  border-width: 0;
+  font-weight: bold;
+}
+
+.chooseFish:hover {
+  background-color: rgb(230, 230, 230);
+  cursor: pointer;
+}
+
+.boost {
+  font-size: 1.25rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: white;
+  border-width: 0;
+  font-weight: bold;
+}
+
+.boost:hover {
+  background-color: rgb(230, 230, 230);
+  cursor: pointer;
+}
+
+.videoPlayer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video {
+  border-radius: 2rem;
+  margin-bottom: 1rem;
+}
+
+.playPauseButton {
+  border-radius: 1.25rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: white;
+  border-width: 0;
+  font-weight: bold;
+}
+
+.playPauseButton:hover {
+  cursor: pointer;
+}
+
+.playPauseButtonInside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playPauseText {
+  font-size: 1.25rem;
+}
