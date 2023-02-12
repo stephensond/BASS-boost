@@ -22,17 +22,17 @@ class VideoComponent extends React.Component {
       const biquadFilter3 = audioContext.createBiquadFilter();
 
       biquadFilter1.type = "peaking";
-      biquadFilter1.frequency.value = Math.random()*1150+100;
+      biquadFilter1.frequency.value = Math.random()*1100+100;
       biquadFilter1.Q.value = Math.random();
-      biquadFilter1.gain.value = 40;
+      biquadFilter1.gain.value = -10;
 
       biquadFilter2.type = "lowshelf";
-      biquadFilter2.frequency.value = Math.random()*1150+100;
+      biquadFilter2.frequency.value = Math.random()*400+800;
       biquadFilter2.gain.value = Math.random()*20+20;
 
       biquadFilter3.type = "highshelf";
-      biquadFilter3.frequency.value = Math.random()*500+800;
-      biquadFilter3.gain.value = Math.random()*40-20;
+      biquadFilter3.frequency.value = biquadFilter2.frequency.value;
+      biquadFilter3.gain.value = Math.random()*20-10;
 
       source.connect(biquadFilter1);
       biquadFilter1.connect(biquadFilter2);
