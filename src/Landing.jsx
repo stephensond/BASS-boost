@@ -12,7 +12,10 @@ export default function Landing({ setLandingPage }) {
           <h3>Everyone can Bass Boost</h3>
           <h1>Few can 🐟 Boost!</h1>
         </div>
-        <EnterButton setLandingPage={setLandingPage} />
+        <EnterButton
+          setLandingPage={setLandingPage}
+          className={styles.EnterButton}
+        />
       </div>
     </div>
   );

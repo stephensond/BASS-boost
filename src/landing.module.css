@@ -22,5 +22,9 @@
     background-image: linear-gradient(to right, #43c6ac, #191654);
     background-clip: text;
     line-height: 10px;
-    font-family: 'Poiret One', cursive;;  
+    font-family: 'Poiret One', cursive;
+}
+
+.EnterButton {
+    font-family: 'Poiret One', cursive;
 }
